@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: main
+requires:
+  - configs: [cfg1]
+deploy:
+  helm:
+    releases:
+      - name: test
+        chartPath: chart
+---
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: cfg1
+manifests:
+  rawYaml:
+    - namespace.yaml
+deploy:
+  kubectl:
